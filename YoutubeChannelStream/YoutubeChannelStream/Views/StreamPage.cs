@@ -1,9 +1,9 @@
 ﻿using System;
-using YoutubeChannelStream;
 using Xamarin.Forms;
 using CodeHollow.FeedReader;
 using System.Collections.Generic;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Essentials;
 
 namespace YoutubeChannelStream
 {
@@ -17,7 +17,7 @@ namespace YoutubeChannelStream
 		#region Constructor
 		public StreamPage()
 		{
-			Title = "Youtube Channel Stream";
+			Title = "Templo Belen Channel Stream :)";
 
 			// For iPhone X
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
@@ -68,30 +68,42 @@ namespace YoutubeChannelStream
 		#region LifeCycle Event Overrides
 		protected async override void OnAppearing()
 		{
+			
 			base.OnAppearing();
-			var rssFeeds = new Feed();
-			try 
+
+
+			var current = Connectivity.NetworkAccess;
+
+			if (current == NetworkAccess.Internet)
 			{
-				rssFeeds = await FeedReader.ReadAsync("https://www.youtube.com/feeds/videos.xml?channel_id=UCwCOn0lguoGNEIwLgRpoPYw");
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-				_feeds.Add(new RSSFeedObject() { Title = "Test", Date = "January 2099", Link = "www.example.com" });
-				PopulateList();
-				return;
-			}
-			foreach (var item in rssFeeds.Items)
-			{
-				var feed = new RSSFeedObject()
+				var rssFeeds = new Feed();
+				try
 				{
-					Title = item.Title,
-					Date = item.PublishingDate.Value.ToString("y"),
-					Link = item.Link
-				};
-				_feeds.Add(feed);
+					rssFeeds = await FeedReader.ReadAsync("https://www.youtube.com/feeds/videos.xml?channel_id=UCfrrN3GuNgtcetJeiRsELUw");
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+					_feeds.Add(new RSSFeedObject() { Title = "Test", Date = "January 2099", Link = "www.example.com" });
+					PopulateList();
+					return;
+				}
+				foreach (var item in rssFeeds.Items)
+				{
+					var feed = new RSSFeedObject()
+					{
+						Title = item.Title,
+						Date = item.PublishingDate.Value.ToString("y"),
+						Link = item.Link
+					};
+					_feeds.Add(feed);
+				}
+				PopulateList();
+            }
+            else
+			{
+                _ = Application.Current.MainPage.DisplayAlert("Error dev red", "habillite la conexion a internet", "ok");
 			}
-			PopulateList();
 		}
 		#endregion LifeCycle Event Overrides
 	}
