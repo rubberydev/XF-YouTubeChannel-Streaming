@@ -79,7 +79,7 @@ namespace YoutubeChannelStream
 				var rssFeeds = new Feed();
 				try
 				{
-					rssFeeds = await FeedReader.ReadAsync("https://www.youtube.com/feeds/videos.xml?channel_id=UCfrrN3GuNgtcetJeiRsELUw");
+					rssFeeds = await FeedReader.ReadAsync($"https://www.youtube.com/feeds/videos.xml?channel_id={Xamarin.Forms.Application.Current.Resources["ChannelId"].ToString()}");
 				}
 				catch (Exception ex)
 				{
@@ -102,7 +102,7 @@ namespace YoutubeChannelStream
             }
             else
 			{
-                _ = Application.Current.MainPage.DisplayAlert("Error dev red", "habillite la conexion a internet", "ok");
+                _ = Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error dev red", "habillite la conexion a internet", "ok");
 			}
 		}
 		#endregion LifeCycle Event Overrides

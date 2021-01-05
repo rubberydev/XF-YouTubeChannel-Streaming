@@ -22,7 +22,7 @@ namespace YoutubeChannelStream
 		private void LoadPage()
 		{
 			HtmlWebViewSource personHtmlSource = new HtmlWebViewSource();
-			var screenWidth = Application.Current.MainPage.Width - 10;
+			var screenWidth = Xamarin.Forms.Application.Current.MainPage.Width - 10;
 
 			// According to standard video resolutions
 			var playerHeight = screenWidth / 1.5;
