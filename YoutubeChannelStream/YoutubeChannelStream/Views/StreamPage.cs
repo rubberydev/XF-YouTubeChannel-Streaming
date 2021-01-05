@@ -17,7 +17,7 @@ namespace YoutubeChannelStream
 		#region Constructor
 		public StreamPage()
 		{
-			Title = "Templo Belen Channel Stream :)";
+			Title = "Templo Belen Canal en vivo :)";
 
 			// For iPhone X
 			On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
