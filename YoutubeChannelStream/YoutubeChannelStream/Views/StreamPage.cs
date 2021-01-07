@@ -102,7 +102,19 @@ namespace YoutubeChannelStream
             }
             else
 			{
-                _ = Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error dev red", "habillite la conexion a internet", "ok");
+               var optionSelected = await Xamarin.Forms.Application.Current.MainPage.DisplayActionSheet("Error dev red", "Recargar!", "Cancelar!" ,"Señor usuario si desea continuar habillite la conexion a internet y seleccione la acción Recargar!");
+
+				if(optionSelected == "Recargar!")
+                {
+					var recargar = new Xamarin.Forms.NavigationPage(new StreamPage())
+					{
+						BarTextColor = Color.FromRgb(255, 255, 255),
+						BarBackgroundColor = Color.FromRgb(60, 171, 223)
+					};
+				}
+				else if (optionSelected == "Cancelar!" || string.IsNullOrEmpty(optionSelected))
+					return;
+                
 			}
 		}
 		#endregion LifeCycle Event Overrides
