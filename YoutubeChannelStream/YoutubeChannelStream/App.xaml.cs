@@ -17,6 +17,7 @@ namespace YoutubeChannelStream
 				BarBackgroundColor = Color.FromRgb(60, 171, 223)
 			};
 
+
 		}
 
 		protected override void OnStart()

@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace YoutubeChannelStream.Droid
 {
-    [Activity(Label = "CanalTB",
+    [Activity(Label = "Canal TB",
    Icon = "@mipmap/icon_TemploBelen",
    Theme = "@style/MainTheme",
    MainLauncher = false,

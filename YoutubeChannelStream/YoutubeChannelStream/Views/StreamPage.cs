@@ -106,7 +106,7 @@ namespace YoutubeChannelStream
 
 				if(optionSelected == "Recargar!")
                 {
-					var recargar = new Xamarin.Forms.NavigationPage(new StreamPage())
+                    Xamarin.Forms.Application.Current.MainPage = new Xamarin.Forms.NavigationPage(new StreamPage())
 					{
 						BarTextColor = Color.FromRgb(255, 255, 255),
 						BarBackgroundColor = Color.FromRgb(60, 171, 223)
